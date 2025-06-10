@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"C:\\DEV\\Unreal5_StudyProject\\UE5_Practice\\Source\\UE5_Practice\\UE5_Practice.Build.cs",
+		"C:\\DEV\\Unreal5_StudyProject\\UE5_Practice\\Source\\UE5_Practice.Target.cs",
+		"C:\\DEV\\Unreal5_StudyProject\\UE5_Practice\\Source\\UE5_PracticeEditor.Target.cs"
+	],
+	"EngineVersion": "5.4.1"
+}
