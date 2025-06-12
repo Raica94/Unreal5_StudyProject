@@ -19,6 +19,27 @@ AMyTestActor::AMyTestActor()
 		Body->SetStaticMesh(SM_BODY.Object);
 	}
 
+	Part = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("PART"));
+
+	ConstructorHelpers::FObjectFinder<UStaticMesh>
+		SM_PART(TEXT("/Game/StarterContent/Props/SM_TableRound.SM_TableRound"));
+	
+	if (SM_PART.Succeeded())
+	{
+		Part->SetStaticMesh(SM_PART.Object);
+	}
+
+	Part->SetRelativeLocation(FVector(0.0f, 0.0f, 100.0f));
+
+	Movement = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("MOVEMENT"));
+
+
+
+	RootComponent=Body;
+	Part->SetupAttachment(Body);
+
+	RotateSpeed = 30.0f;
+	Movement->RotationRate = FRotator(0.0f, RotateSpeed, 0.0f);
 
 }
 
@@ -34,5 +55,6 @@ void AMyTestActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	AddActorLocalRotation(FRotator(0.0f, RotateSpeed * DeltaTime, 0.0f));
 }
 

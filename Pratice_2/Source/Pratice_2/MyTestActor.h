@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameFramework/RotatingMovementComponent.h"
 #include "GameFramework/Actor.h"
 #include "MyTestActor.generated.h"
 
@@ -24,6 +25,18 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent *Body;
 
-	UStaticMeshComponent* Body;
+
+
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent *Part;
+
+	UPROPERTY(VisibleAnywhere)
+	URotatingMovementComponent* Movement;
+
+private:
+	UPROPERTY(EditAnywhere,Category=Stat,Meta=(AllowPrivateAccess=true))
+	float RotateSpeed;
+
 };
