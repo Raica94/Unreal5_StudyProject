@@ -3,13 +3,13 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class UE_PracticeTarget : TargetRules
+public class Pratice_2EditorTarget : TargetRules
 {
-	public UE_PracticeTarget(TargetInfo Target) : base(Target)
+	public Pratice_2EditorTarget(TargetInfo Target) : base(Target)
 	{
-		Type = TargetType.Game;
+		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V5;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_4;
-		ExtraModuleNames.Add("UE_Practice");
+		ExtraModuleNames.Add("Pratice_2");
 	}
 }

@@ -5,7 +5,7 @@
 	"Description": "",
 	"Modules": [
 		{
-			"Name": "UE_Practice",
+			"Name": "Pratice_2",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}

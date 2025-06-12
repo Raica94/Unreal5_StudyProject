@@ -4,15 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "UE_PracticeGameMode.generated.h"
+#include "Pratice_2GameMode.generated.h"
 
 UCLASS(minimalapi)
-class AUE_PracticeGameMode : public AGameModeBase
+class APratice_2GameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
 public:
-	AUE_PracticeGameMode();
+	APratice_2GameMode();
 };
 
 

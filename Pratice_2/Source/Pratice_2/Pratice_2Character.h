@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
-#include "UE_PracticeCharacter.generated.h"
+#include "Pratice_2Character.generated.h"
 
 class USpringArmComponent;
 class UCameraComponent;
@@ -16,7 +16,7 @@ struct FInputActionValue;
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
 UCLASS(config=Game)
-class AUE_PracticeCharacter : public ACharacter
+class APratice_2Character : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -45,7 +45,7 @@ class AUE_PracticeCharacter : public ACharacter
 	UInputAction* LookAction;
 
 public:
-	AUE_PracticeCharacter();
+	APratice_2Character();
 	
 
 protected:

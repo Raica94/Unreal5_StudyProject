@@ -1,6 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "UE_PracticeCharacter.h"
+#include "Pratice_2Character.h"
 #include "Engine/LocalPlayer.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -14,9 +14,9 @@
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
 //////////////////////////////////////////////////////////////////////////
-// AUE_PracticeCharacter
+// APratice_2Character
 
-AUE_PracticeCharacter::AUE_PracticeCharacter()
+APratice_2Character::APratice_2Character()
 {
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
@@ -54,7 +54,7 @@ AUE_PracticeCharacter::AUE_PracticeCharacter()
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
 
-void AUE_PracticeCharacter::BeginPlay()
+void APratice_2Character::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
@@ -63,7 +63,7 @@ void AUE_PracticeCharacter::BeginPlay()
 //////////////////////////////////////////////////////////////////////////
 // Input
 
-void AUE_PracticeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void APratice_2Character::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	// Add Input Mapping Context
 	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
@@ -82,10 +82,10 @@ void AUE_PracticeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
 
 		// Moving
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AUE_PracticeCharacter::Move);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &APratice_2Character::Move);
 
 		// Looking
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AUE_PracticeCharacter::Look);
+		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &APratice_2Character::Look);
 	}
 	else
 	{
@@ -93,7 +93,7 @@ void AUE_PracticeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 	}
 }
 
-void AUE_PracticeCharacter::Move(const FInputActionValue& Value)
+void APratice_2Character::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D MovementVector = Value.Get<FVector2D>();
@@ -116,7 +116,7 @@ void AUE_PracticeCharacter::Move(const FInputActionValue& Value)
 	}
 }
 
-void AUE_PracticeCharacter::Look(const FInputActionValue& Value)
+void APratice_2Character::Look(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
