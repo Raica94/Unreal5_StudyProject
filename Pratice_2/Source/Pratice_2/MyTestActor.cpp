@@ -6,7 +6,7 @@
 // Sets default values
 AMyTestActor::AMyTestActor()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	Body = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BODY"));
@@ -23,7 +23,7 @@ AMyTestActor::AMyTestActor()
 
 	ConstructorHelpers::FObjectFinder<UStaticMesh>
 		SM_PART(TEXT("/Game/StarterContent/Props/SM_TableRound.SM_TableRound"));
-	
+
 	if (SM_PART.Succeeded())
 	{
 		Part->SetStaticMesh(SM_PART.Object);
@@ -35,11 +35,12 @@ AMyTestActor::AMyTestActor()
 
 
 
-	RootComponent=Body;
+	RootComponent = Body;
 	Part->SetupAttachment(Body);
 
 	RotateSpeed = 30.0f;
 	Movement->RotationRate = FRotator(0.0f, RotateSpeed, 0.0f);
+
 
 }
 
@@ -47,7 +48,12 @@ AMyTestActor::AMyTestActor()
 void AMyTestActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	FString TestLog = FString::Printf(TEXT("This is TEST LOG!!"));
+	FVector Loc = this->GetActorLocation();
+	UE_LOG(LogTemp, Log, TEXT("%s ,Actor Loc.x: %f"), *TestLog,Loc.X);
+
+	UE_LOG(LogPractice_2, Warning, TEXT("This is TEST LOG!!"));
 }
 
 // Called every frame

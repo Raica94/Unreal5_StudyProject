@@ -2,7 +2,9 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+//#include "CoreMinimal.h"
+
+#include "Pratice_2.h"
 #include "GameFramework/RotatingMovementComponent.h"
 #include "GameFramework/Actor.h"
 #include "MyTestActor.generated.h"
@@ -34,6 +36,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	URotatingMovementComponent* Movement;
+
+	UPROPERTY(EditAnywhere, Category=ID)
+	int32 ID;
 
 private:
 	UPROPERTY(EditAnywhere,Category=Stat,Meta=(AllowPrivateAccess=true))
