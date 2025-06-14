@@ -8,12 +8,18 @@
 AMyGameModeBase::AMyGameModeBase()
 {
 	// set default pawn class to our Blueprinted character
-	//static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/_My/MyTestPawn_BP.MyTestPawn_BP"));
-	//if (PlayerPawnBPClass.Class != NULL)
-	//{
-	//	DefaultPawnClass = PlayerPawnBPClass.Class;
-	//}
-	DefaultPawnClass = AMyTestPawn::StaticClass();
+	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/_My/MyTestPawn_BP.MyTestPawn_BP_C"));
+	//static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/_My/MyTestPawn_BP.MyTestPawn_BP_C"));
+
+	if (PlayerPawnBPClass.Class != NULL)
+	{
+		DefaultPawnClass = PlayerPawnBPClass.Class;
+	}
+	else
+	{
+		DefaultPawnClass = AMyTestPawn::StaticClass();
+	}
+	//
 	PlayerControllerClass = AMyPlayerController_N::StaticClass();
 }
 

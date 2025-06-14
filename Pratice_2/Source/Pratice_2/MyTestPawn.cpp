@@ -3,6 +3,8 @@
 
 #include "MyTestPawn.h"
 
+
+
 // Sets default values
 AMyTestPawn::AMyTestPawn()
 {
@@ -19,6 +21,7 @@ AMyTestPawn::AMyTestPawn()
 	Mesh->SetupAttachment(Capsule);
 	SpringArm->SetupAttachment(Capsule);
 	Camera->SetupAttachment(SpringArm);
+	Camera->bUsePawnControlRotation = true;
 
 	Capsule->SetCapsuleHalfHeight(80.0f);
 	Capsule->SetCapsuleRadius(34.0f);
@@ -26,6 +29,14 @@ AMyTestPawn::AMyTestPawn()
 
 	SpringArm->TargetArmLength = 400.0f;
 	SpringArm->SetRelativeRotation(FRotator(-15.0f, 0.0f, 0.0f));
+
+
+	SpringArm->bUsePawnControlRotation = true;
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationYaw = false;
+	bUseControllerRotationRoll = false;
+
+	//ACharacter::GetCharacterMovement()->bOrientRotationToMovement = true;
 
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_TEST(TEXT("/Game/Characters/Mannequins/Meshes/SKM_Manny.SKM_Manny"));
 	if (SK_TEST.Succeeded())
@@ -39,6 +50,8 @@ void AMyTestPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
+
+
 }
 
 // Called every frame
@@ -64,6 +77,55 @@ void AMyTestPawn::PossessedBy(AController* NewController)
 void AMyTestPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem< UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(MyInputMapping, 0);
+		}
+	}
+
+	if (UEnhancedInputComponent* Input = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		Input->BindAction(IA_T_Attack, ETriggerEvent::Triggered, this, &AMyTestPawn::TestAttack);
+		Input->BindAction(IA_T_Move, ETriggerEvent::Triggered, this, &AMyTestPawn::TestMove);
+		Input->BindAction(IA_T_Look, ETriggerEvent::Triggered, this, &AMyTestPawn::TestLook);
+	}
+}
+
+void AMyTestPawn::TestAttack()
+{
+	ABLOG_S(Warning);
+}
+
+void AMyTestPawn::TestMove(const FInputActionValue& Value)
+{
+	const FVector2d MovementVector = Value.Get<FVector2d>();
+	//const FRotator Rotation = this->GetControlRotation();
+	//const FRotator YawRotation(0, Rotation, 0);
+	//
+	//const FVector FowardDirection = FRotationMatrix(YawRotation).GetUnitAxes(EAxis::X);
+	//const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxes(EAxis::Y);
+
+	//this-> CuttentActor
+
+	if (Controller != nullptr)
+	{
+		AddMovementInput(GetActorForwardVector(), MovementVector.Y);
+		AddMovementInput(GetActorRightVector(), MovementVector.X);
+	}
+	ABLOG_S(Warning);
+}
+
+void AMyTestPawn::TestLook(const FInputActionValue& Value)
+{
+	FVector2D LookVector = Value.Get<FVector2D>();
+	
+	if (Controller != nullptr)
+	{
+		AddControllerYawInput(LookVector.X);
+		AddControllerPitchInput(LookVector.Y);
+	}
 
 }
 
