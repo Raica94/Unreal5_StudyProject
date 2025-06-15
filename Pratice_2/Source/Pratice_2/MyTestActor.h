@@ -26,6 +26,15 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// 언리얼 엔진에서 오브젝트의 변수가 초기화될 떄 호출되는 함수
+	virtual void PostInitProperties() override;
+
+	// 변수가 수정될 떄 호출되는 함수는 PostEditChangeProperty
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangeEvent) override;
+
+
+
+
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent *Body;
 
@@ -45,3 +54,7 @@ private:
 	float RotateSpeed;
 
 };
+
+//
+//     UPROPERTY 
+// 언리얼 에디터에서 보이며 어떻게 작동할 수 있는지 지정

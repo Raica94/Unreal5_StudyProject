@@ -64,3 +64,13 @@ void AMyTestActor::Tick(float DeltaTime)
 	AddActorLocalRotation(FRotator(0.0f, RotateSpeed * DeltaTime, 0.0f));
 }
 
+void AMyTestActor::PostInitProperties()
+{
+	Super::PostInitProperties();
+}
+
+void AMyTestActor::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangeEvent)
+{
+	Super::PostEditChangeProperty(PropertyChangeEvent);
+}
+
